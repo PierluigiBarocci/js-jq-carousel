@@ -16,5 +16,12 @@ $('.rounded.arrow.right').click(function(){
 });
 
 $('.rounded.arrow.left').click(function(){
-    alert('Hai cliccato la freccia sinistra');
+    var imgCorrente = $('img.active');
+    var imgPrecedente = imgCorrente.prev('img');
+    imgCorrente.removeClass('active');
+    imgPrecedente.addClass('active');
+    if (imgCorrente.hasClass('first')) {
+        imgPrecedente = $('img.last').addClass('active');
+    };
+
 });
