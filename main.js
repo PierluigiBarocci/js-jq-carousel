@@ -41,3 +41,31 @@ $('.rounded.arrow.left').click(function(){
         pallinoPrecedente = $('i.last').addClass('active');
     };
 });
+
+
+// BONUS: //
+
+// index() di jQuery con il $(this) mi ritorna la posizione dell'elemento cliccato, è l'equivalente del indexOf per le array: qui é come se l'array fosse il padre dots, e tutti i puntini dentro sono i suoi elementi in posizione.
+// mi creo una serie di varibaili più chiacchierine per non portarmi dietro il mondo intero
+$('.dots i').click(function(){
+    var pallinoCorrente = $('i.active');
+    var pallinoScelto = $(this);
+    // questo indexPallino sarà un numero (nel nostro caso da 0 a 3) che indica la posizione del pallino
+    var indexPallino = pallinoScelto.index();
+    var imgCorrente = $('img.active');
+
+
+    // se il pallino che clicco NON è quello attivo
+    if (!pallinoScelto.hasClass('active')) {
+        // tolgo la classe al pallino che era attivo
+        pallinoCorrente.removeClass('active');
+        // aggiungo la classe active al pallino che ho premuto
+        pallinoScelto.addClass('active');
+        // all'immagine corrente tolgo la classe active (quindi tolgo il display block)
+        imgCorrente.removeClass('active');
+        // e qui accade la magia, perchè stiamo letteralmente PARLANDO grazie a jQuery:
+        // prendi il div photos, trovami l'img con posizione indexPallino (quindi la posizione del pallino cliccato) e aggiungile la classe active.
+        // così facendo, di ogni pallino su cui clickeremo, prendiamo la posizione e andiamo a cercare l'immagine con la stessa posizione all'interno del div photos. SPETTACOLO PURO!!!!
+        $('.photos').find('img').eq(indexPallino).addClass('active');
+    };
+});
